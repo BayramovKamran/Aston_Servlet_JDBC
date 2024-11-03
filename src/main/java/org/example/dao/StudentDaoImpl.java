@@ -40,7 +40,7 @@ public class StudentDaoImpl implements StudentDao {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                student = new Student(rs.getInt("id"), rs.getString("name"));
+                student = new Student(rs.getInt("id"), rs.getString("student_name"));
             }
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error fetching student by ID: " + id, e);
@@ -55,7 +55,7 @@ public class StudentDaoImpl implements StudentDao {
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                students.add(new Student(rs.getInt("id"), rs.getString("name")));
+                students.add(new Student(rs.getInt("id"), rs.getString("student_name")));
             }
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error fetching all students", e);

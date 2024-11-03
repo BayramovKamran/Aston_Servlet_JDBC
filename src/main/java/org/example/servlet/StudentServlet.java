@@ -35,7 +35,7 @@ public class StudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        String name = request.getParameter("name");
+        String name = request.getParameter("student_name");
         if (name == null || name.trim().isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             out.write("{\"error\":\"Student name cannot be null or empty\"}");
@@ -57,7 +57,7 @@ public class StudentServlet extends HttpServlet {
             Student student = studentDao.getStudentById(studentId);
             PrintWriter out = response.getWriter();
             if (student != null) {
-                out.write("{\"id\":" + student.getId() + ",\"name\":\"" + student.getName() + "\"}");
+                out.write("{\"id\":" + student.getId() + ",\"student_name\":\"" + student.getName() + "\"}");
                 response.setStatus(HttpServletResponse.SC_OK);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -68,7 +68,7 @@ public class StudentServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.write("[");
             for (int i = 0; i < students.size(); i++) {
-                out.write("{\"id\":" + students.get(i).getId() + ",\"name\":\"" + students.get(i).getName() + "\"}");
+                out.write("{\"id\":" + students.get(i).getId() + ",\"student_name\":\"" + students.get(i).getName() + "\"}");
                 if (i < students.size() - 1) {
                     out.write(",");
                 }
@@ -82,7 +82,7 @@ public class StudentServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         String idParam = request.getParameter("id");
-        String name = request.getParameter("name");
+        String name = request.getParameter("student_name");
         if (idParam == null || name == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             out.write("{\"error\":\"Student ID and name cannot be null\"}");
