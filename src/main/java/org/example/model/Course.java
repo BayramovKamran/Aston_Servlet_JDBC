@@ -1,11 +1,14 @@
 package org.example.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Course {
 
     private int id;
     private String courseName;
+    private List<Student> students;
 
     public Course() {
     }
@@ -31,17 +34,26 @@ public class Course {
         this.courseName = courseName;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Course)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return id == course.id && Objects.equals(courseName, course.courseName);
+        return id == course.id && Objects.equals(courseName, course.courseName)
+                && Objects.equals(students, course.students);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, courseName);
+        return Objects.hash(id, courseName, students);
     }
 
     @Override
@@ -49,6 +61,7 @@ public class Course {
         return "Course{" +
                 "id=" + id +
                 ", courseName='" + courseName + '\'' +
+                ", students=" + students +
                 '}';
     }
 }
