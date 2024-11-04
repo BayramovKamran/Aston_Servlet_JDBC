@@ -43,4 +43,12 @@ public class Course {
     public int hashCode() {
         return Objects.hash(id, courseName);
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", courseName='" + courseName + '\'' +
+                '}';
+    }
 }
